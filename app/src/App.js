@@ -38,13 +38,13 @@ function App() {
           placeholder="Enter search keyword"
         />
         <button onClick={handleSearch} className="bg-blue-500 text-white p-2">
-          Search Product
+          Search Products
         </button>
       </div>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10'>
-        {loading && <p>Loading products info</p>}
+        {loading && <p className='absolute bg-blue-400 text-white p-2 left-10 right-10 mt-10 text-center rounded shadow-md'>Loading products info</p>}
         {products.length === 0 && !loading
-          ? <p className='bg-red-400 text-white p-2 mt-10 mx-full px-auto text-center rounded shadow-md'>No products to show, type a keyword and search for new ones</p>
+          ? <p className='absolute bg-red-400 text-white p-2 left-10 right-10 mt-10 text-center rounded shadow-md'>No products to show, type a keyword and search for new ones</p>
           : products.map((product, index) => (
             <Product key={index} product={product} />
           ))}
