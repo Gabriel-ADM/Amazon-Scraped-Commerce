@@ -6,7 +6,7 @@ const cheerio = require('cheerio');
 
 // Initializing the node API
 const app = express();
-const port = 3331
+const port = 3331;
 const axiosInstance = axios.create();
 
 app.use(express.urlencoded({ extended: true }));
@@ -22,14 +22,23 @@ app.get("/", async (req, res) => {
 app.get("/api", async (req, res) => {
     try {
         const searchKey = req.query.keyword;
-        const amazonUrl = `https://www.amazon.com.br/s?k=${searchKey}`;
+        const amazonUrl = `https://www.amazon.com/s?k=${searchKey}`;
 
+        if (!searchKey) {
+            return res.status(400).send("Bad Request: 'keyword' query parameter is required.");
+        }
         const response = await scrapAmazonSearch(amazonUrl);
 
+        if (response.length === 0) {
+            return res.status(401).send("Bad Request: 'keyword' did not return any data.");
+        }
+        if (response.error) {
+            return res.status(500).send(`Failed to fetch data from Amazon. Error: ${response.error}`);
+        }
         return res.status(200).send(response);
     } catch (err) {
         console.log(err);
-        return res.status(400).send(`Something went wrong.\n Error:${err}`);
+        return res.status(500).send(`Something went wrong, internal server error.\n Error:${err}`);
     }
 })
 
@@ -80,6 +89,7 @@ async function scrapAmazonSearch(url) {
         return products;
     } catch (err) {
         console.log(err);
+        return [];
         // throw err;
     }
 }
