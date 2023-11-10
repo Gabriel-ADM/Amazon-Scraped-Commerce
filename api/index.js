@@ -164,7 +164,7 @@ async function scrapAmazonSearch(url) {
                         name: name,
                         image: image,
                         link: link,
-                        rating: rating === '' ? 'not rated' : rating,
+                        rating: rating === '' ? 0 : rating,
                         totalRatings: rating === '' ? "$0.00" : totalRatings,
                         price: price,
                         page: page

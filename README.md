@@ -1,4 +1,4 @@
-# Amazon Scraper API
+# Amazon Scraper APP
 
 This API allows you to scrape Amazon search results for a given keyword. It utilizes Express.js for the server, Axios for making HTTP requests, Cheerio for web scraping, and CORS for cross-origin resource sharing.
 
@@ -24,6 +24,7 @@ This API allows you to scrape Amazon search results for a given keyword. It util
 
    ```bash
    cd amazon-scraper-api
+   cd api
    npm install
    ```
 
@@ -34,7 +35,8 @@ To use the API, follow the steps below:
 1. Start the server:
 
    ```bash
-   npm start
+   cd api
+   node index.js
    ```
 
 2. Access the API at `http://localhost:3331`.
@@ -64,14 +66,25 @@ The scraping function (`scrapAmazonSearch`) is responsible for fetching Amazon s
 Start the server using the following command:
 
 ```bash
-npm start
+cd api
+node index.js
 ```
 
-The server will be accessible at `http://localhost:3331`.
+The server will be accessible at `http://localhost:3333`.
 
-## Contributing
+## Running the Frontend Application
 
-Contributions are welcome! Feel free to open issues or submit pull requests to improve the API.
+Then you need to run the frontend application to use the API
+
+1. Start the server:
+
+   ```bash
+   cd app
+   npm i
+   npm start
+   ```
+
+2. Access the webpage at `http://localhost:3000`. And go searching keywords
 
 ## License
 
